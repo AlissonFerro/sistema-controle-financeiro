@@ -13,19 +13,20 @@
         <th>Ação</th>
     </tr>
 
-    @foreach (var disciplina in Model)
+    @foreach (var pagamento in Model)
     {
-        if (disciplina.Ativo == true)
+        if (pagamento.Ativo == true)
         {
 
             <tr>
-                <td>@disciplina.Id</td>
-                <td>@disciplina.Descricao</td>
-                <td>@disciplina.Valor</td>
-                <td>@disciplina.DataVencimento</td>
+                <td>@pagamento.Id</td>
+                <td>@pagamento.Descricao</td>
+                <td>@pagamento.Valor</td>
+                <td>@pagamento.DataVencimento</td>
+                <td>@pagamento.Pago</td>
                 <td>
-                    <a asp-route-id="@disciplina.Id" asp-action="Descricao" class="btn btn-secondary"><i class="fa-solid fa-pen"></i> Editar</a>
-                    <a asp-route-id="@disciplina.Id" asp-action="FormularioExcluir" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Excluir</a>
+                    <a asp-route-id="@pagamento.Id" asp-action="Descricao" class="btn btn-secondary"><i class="fa-solid fa-pen"></i> Editar</a>
+                    <a asp-route-id="@pagamento.Id" asp-action="FormularioExcluir" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Excluir</a>
                 </td>
             </tr>
 
