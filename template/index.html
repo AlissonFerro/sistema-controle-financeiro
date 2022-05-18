@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -112,7 +113,7 @@
                             
                            
                         -->
-                        <div id="cards-info" class="col-xl-3 col-md-6 mb-4">
+                        <div id="cards-info" class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -130,7 +131,7 @@
                         </div>
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -150,7 +151,7 @@
                        
 
                         <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -173,8 +174,10 @@
 
                     <div class="row">
 
-                        <!-- Area Chart -->
-                        <div class="col-xl-12 col-lg-7">
+                        <!-- Area Chart 
+                        col-xl-4 col-md-6 mb-4"
+                        -->
+                        <div class="col-xl-12 col-lg-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -190,7 +193,7 @@
                             </div>
                         </div>
 
-                    <div class="tabela">
+                        <div class="col-xl-12">
 
               
                         <!-- Page Heading -->
@@ -198,10 +201,10 @@
                             Tabela de pagamentos 
                             Example -->
                 <!-- DataTales Example -->
-                <div  class="card shadow mb-4">
-                    <div id="tabela-contas"  class="card-body">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                     <table id="dataTable" class="dataTables table-hover" style="width:100%" cellspacing="2">
                                 <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -225,6 +228,28 @@
                                             </tr>
                                         </tfoot>
                                         <tbody>
+                                            <tr class="boleto-vencido">
+                                                <td>1</td>
+                                                <td>Internet</td>
+                                                <td class="preco">194,10</td>
+                                                <td>123123123120310212030123012</td>
+                                                <td>17/05/2022</td>
+                                                <td>17/05/2022</td>
+                                                <th class="options">  
+                                                    <!-- confirmar pagamento -->
+                                                    <a href="#" class="btn btn-success btn-circle">
+                                                    <i class="fas fa-check"></i>
+                                                    </a>
+                                                    <!-- editar pagamento -->
+                                                    <a href="#" class="btn btn-primary btn-circle">
+                                                    <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <!-- excluir pagamento -->
+                                                    <a href="#" class="btn btn-danger btn-circle">
+                                                    <i class="fas fa-trash"></i>
+                                                    </a>
+                                             </th>
+                                            </tr>
                                             <tr>
                                                 <td>1</td>
                                                 <td>Internet</td>
@@ -232,7 +257,29 @@
                                                 <td>123123123120310212030123012</td>
                                                 <td>17/05/2022</td>
                                                 <td>17/05/2022</td>
-                                                <th>  
+                                                <th class="options">  
+                                                    <!-- confirmar pagamento -->
+                                                    <a href="#" class="btn btn-success btn-circle">
+                                                    <i class="fas fa-check"></i>
+                                                    </a>
+                                                    <!-- editar pagamento -->
+                                                    <a href="#" class="btn btn-primary btn-circle">
+                                                    <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <!-- excluir pagamento -->
+                                                    <a href="#" class="btn btn-danger btn-circle">
+                                                    <i class="fas fa-trash"></i>
+                                                    </a>
+                                             </th>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Internet</td>
+                                                <td class="preco">194,10</td>
+                                                <td>123123123120310212030123012</td>
+                                                <td>17/05/2022</td>
+                                                <td>17/05/2022</td>
+                                                <th class="options">  
                                                     <!-- confirmar pagamento -->
                                                     <a href="#" class="btn btn-success btn-circle">
                                                     <i class="fas fa-check"></i>
@@ -323,7 +370,8 @@
     <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+    <script src="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css"></script>
+    <script src="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css"></script>
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
