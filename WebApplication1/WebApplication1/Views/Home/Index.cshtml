@@ -2,7 +2,14 @@
     Layout = null;
     ViewData["Title"] = "Home Page";
 }
+@model List<Pagamento>
 
-
+@foreach (var pagamento in Model)
+{
+    if (!pagamento.Pago)
+    {
+        <p>@pagamento.Descricao em aberto</p>
+    }
+}
 
 <a asp-action="Listar">Listar</a>

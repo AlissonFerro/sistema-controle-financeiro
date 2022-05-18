@@ -8,8 +8,9 @@
     <tr>
         <th>Id</th>
         <th>Nome</th>
-        <th>Professor</th>
-        <th>Carga Horaria</th>
+        <th>Valor</th>
+        <th>Data de vencimento</th>
+        <th>Pago</th>
         <th>Ação</th>
     </tr>
 
@@ -25,8 +26,9 @@
                 <td>@pagamento.DataVencimento</td>
                 <td>@pagamento.Pago</td>
                 <td>
-                    <a asp-route-id="@pagamento.Id" asp-action="Descricao" class="btn btn-secondary"><i class="fa-solid fa-pen"></i> Editar</a>
-                    <a asp-route-id="@pagamento.Id" asp-action="FormularioExcluir" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Excluir</a>
+                    <a asp-route-id="@pagamento.Id" asp-action="Pagar" class="btn btn-secondary"><i class="fa-solid fa-pen"></i> Pago</a>
+                    <a asp-route-id="@pagamento.Id" asp-action="Editar" class="btn btn-secondary"><i class="fa-solid fa-pen"></i> Editar</a>
+                    <a asp-route-id="@pagamento.Id" asp-action="Excluir" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Excluir</a>
                 </td>
             </tr>
 
