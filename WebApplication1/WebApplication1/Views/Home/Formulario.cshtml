@@ -1,0 +1,77 @@
+﻿@*
+    
+*@
+@{
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-lg-12 col-md-6 mb-4 justify-content-center">
+
+
+            <form class="d-flex p-2 text-center justify-content-center">
+                <div class="form-group col-xl-2 col-md-3 mb-4">
+                    <label for="formGroupExampleInput">ID</label>
+                    <input type="text" class="form-control mb-3 text-center" id="formGroupExampleInput" placeholder="14" readonly>
+
+                </div>
+
+            </form>
+
+            <form class="d-flex flex-column p-2 align-items-center">
+
+
+                <div class="form-group col-xl-4 col-md-6 mb-4">
+                    <label for="formGroupExampleInput">Descrição do pagamento</label>
+                    <input type="text" class="form-control mb-3" id="formGroupExampleInput" placeholder=" " required>
+
+
+                    <label for="formGroupExampleInput2">Valor</label>
+
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">R$</span>
+                        </div>
+                        <input type="text" name="dinheiro" class="form-control mb-3 dinheiro form-control" id="formGroupExampleInput2 dinheiro" style="display: inline-block;" required>
+
+                    </div>
+
+
+                    <label for="formGroupExampleInput">Código de barras</label>
+                    <input type="text" class="form-control mb-3 money2" id="formGroupExampleInput" placeholder="" required>
+
+                </div>
+                <div class="form-group col-xl-4 col-md-6 mb-4">
+
+                    <label for="formGroupExampleInput2">Data de vencimento</label>
+                    <input type="date" class="form-control mb-3" id="formGroupExampleInput2" placeholder="" required>
+
+
+                    <label for="formGroupExampleInput2">Data de pagamento</label>
+                    <input type="date" class="form-control mb-3 " id="formGroupExampleInput2" placeholder="">
+
+
+                </div>
+
+                <div id="botoes-boleto" class="buttons d-flex">
+                    <a href="#">
+                        <button type="button" class="btn btn-success d-flex">Salvar</button>
+                    </a>
+                    <a href="#">
+                        <button type="button" class="btn btn-danger d-flex">Cancelar</button>
+                    </a>
+
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- /.container-fluid -->

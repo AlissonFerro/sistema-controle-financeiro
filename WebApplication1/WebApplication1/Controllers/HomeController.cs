@@ -6,22 +6,28 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-
+        
         private readonly FinanceiroContext _context;
 
         public HomeController(FinanceiroContext context)
         {
             _context = context;
         }
-
+        
         public IActionResult Index()
         {
-            return View("Index", _context.Pagamentos.ToList());
+            return View();
+            //return View("Index", _context.Pagamentos.ToList());
         }
 
         public IActionResult Listar()
         {
             return View("Listagem", _context.Pagamentos.ToList());
+        }
+
+        public IActionResult Formulario()
+        {
+            return View("Formulario");
         }
 
         public IActionResult Adicionar(Pagamento pagamento)
