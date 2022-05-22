@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model List<Pagamento>
 
 <div class="container-fluid">
 
@@ -26,7 +27,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Quantidade total de pagamentos
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">45</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.QuantidadeTotalPagos</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -45,7 +46,7 @@
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 Quantidade de pagamentos a vencer
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.AVencer</div>
                         </div>
                         <div class="col-auto">
                             <i class="fa fa-exclamation fa-2x text-gray-300"></i>
@@ -61,9 +62,9 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                Quantidade de pagamentos vencidos
+                                Quantidade de pagamentos vencidos não pagos
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.PagamentosVencidos</div>
                         </div>
                         <div class="col-auto">
                             <i class="fa fa-times fa-2x text-gray-300"></i>
@@ -84,7 +85,7 @@
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Valor total de pagamentos
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">R$18</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">R$ @ViewBag.TotalPago</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -136,8 +137,8 @@
                                     <th>Descrição</th>
                                     <th>Valor</th>
                                     <th>Código de barras</th>
-                                    <th>Data de pagamento</th>
                                     <th>Data de vencimento</th>
+                                    <th>Data de pagamento</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
@@ -147,80 +148,43 @@
                                     <th>Descrição</th>
                                     <th>Valor</th>
                                     <th>Código de barras</th>
-                                    <th>Data de pagamento</th>
                                     <th>Data de vencimento</th>
-
+                                    <th>Data de pagamento</th>
+                                    <th>Ações</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                <tr class="boleto-vencido">
-                                    <td>1</td>
-                                    <td>Internet</td>
-                                    <td class="preco">194,10</td>
-                                    <td>123123123120310212030123012</td>
-                                    <td>17/05/2022</td>
-                                    <td>17/05/2022</td>
-                                    <th class="options">
-                                        <!-- confirmar pagamento -->
+                                @foreach (var pagamentos in Model)
+                                {
+                                    if (pagamentos.Ativo)
+                                    {
+                                        <tr class="boleto-vencido">
+                                            <td>@pagamentos.Id</td>
+                                            <td>@pagamentos.Descricao</td>
+                                            <td class="preco">@pagamentos.Valor</td>
+                                            <td>@pagamentos.CodBarras</td>
+                                            <td>@pagamentos.DataVencimento</td>
+
+                                            if(@pagamentos.Pago){
+                                                <td>@pagamentos.DataPagamento</td>
+                                            }
+                                            <th class="options">
+                                                <!-- confirmar pagamento -->
                                         <a href="#" class="btn btn-success btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <!-- editar pagamento -->
+                                                    <i class="fas fa-check"></i>
+                                                </a>
+                                                <!-- editar pagamento -->
                                         <a href="tables.html" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <!-- excluir pagamento -->
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <!-- excluir pagamento -->
                                         <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Internet</td>
-                                    <td class="preco">194,10</td>
-                                    <td>123123123120310212030123012</td>
-                                    <td>17/05/2022</td>
-                                    <td>17/05/2022</td>
-                                    <th class="options">
-                                        <!-- confirmar pagamento -->
-                                        <a href="#" class="btn btn-success btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <!-- editar pagamento -->
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <!-- excluir pagamento -->
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Internet</td>
-                                    <td class="preco">194,10</td>
-                                    <td>123123123120310212030123012</td>
-                                    <td>17/05/2022</td>
-                                    <td>17/05/2022</td>
-                                    <th class="options">
-                                        <!-- confirmar pagamento -->
-                                        <a href="#" class="btn btn-success btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <!-- editar pagamento -->
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <!-- excluir pagamento -->
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </th>
-                                </tr>
-
-
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </th>
+                                        </tr>
+                                    }
+                                }
                             </tbody>
                         </table>
                     </div>

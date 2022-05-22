@@ -6,18 +6,40 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        
+
         private readonly FinanceiroContext _context;
 
         public HomeController(FinanceiroContext context)
         {
             _context = context;
         }
-        
+
         public IActionResult Index()
         {
-            return View();
-            //return View("Index", _context.Pagamentos.ToList());
+            int totalPagos = 0;
+            int pagamentosVencidos = 0;
+            decimal valorTotalPago = 0;
+            List<Pagamento> pagamentos = _context.Pagamentos.ToList();
+            foreach (var pagamento in pagamentos)
+            {
+                if (pagamento.Pago)
+                {
+                    totalPagos++;
+                    valorTotalPago += pagamento.Valor;
+                }
+
+                int data = DateTime.Now.Subtract(pagamento.DataVencimento).Days;
+                if (data > 0 && !pagamento.Pago)
+                {
+                    pagamentosVencidos++;
+                }
+            }
+
+            ViewBag.QuantidadeTotalPagos = totalPagos;
+            ViewBag.AVencer = pagamentos.Count() - totalPagos;
+            ViewBag.PagamentosVencidos = pagamentosVencidos;
+            ViewBag.TotalPago = valorTotalPago;
+            return View("Index", pagamentos);
         }
 
         public IActionResult Listar()
@@ -41,7 +63,7 @@ namespace WebApplication1.Controllers
             Pagamento pagamentoEncontrado = new Pagamento();
             pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == pagamento.Id);
 
-            if(pagamentoEncontrado == null)
+            if (pagamentoEncontrado == null)
             {
                 _context.Pagamentos.Add(pagamento);
                 _context.SaveChanges();
@@ -74,6 +96,45 @@ namespace WebApplication1.Controllers
             }
             ViewBag.Name = "Editar";
             return View("Formulario", pagamentoEncontrado);
+        }
+
+        public IActionResult Pagar(int id)
+        {
+            Pagamento pagamentoEncontrado = new Pagamento();
+            pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == id);
+            if(pagamentoEncontrado == null) { 
+                return View("Erro", "Pagamento não encontrado");
+            }
+            return RedirectToAction("FormularioPagamento", pagamentoEncontrado);
+        }
+
+        public IActionResult ConfirmarPagamento(int id, DateTime dataPagamento)
+        {
+            Pagamento pagamentoEncontrado = new Pagamento();
+            pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == id);
+            if(pagamentoEncontrado == null || !pagamentoEncontrado.Ativo)
+            {
+                return View("Erro", "Pagamento não encontrado");
+            }
+            if (pagamentoEncontrado.Pago)
+            {
+                return View("Erro", "Título já pago");
+            }
+            if(pagamentoEncontrado != null)
+            {
+                Pagamento pagamento = new Pagamento();
+                pagamento = pagamentoEncontrado;
+                pagamento.Pago = true;
+                pagamento.DataPagamento = dataPagamento;
+
+                _context.Entry(pagamentoEncontrado).CurrentValues.SetValues(pagamento);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Erro", "Pagamento não encontrado");
+            }
         }
 
         public IActionResult FormularioExcluir(int id)
@@ -109,7 +170,7 @@ namespace WebApplication1.Controllers
 
                 _context.Entry(pagamentoEncontrado).CurrentValues.SetValues(pagamento);
                 _context.SaveChanges();
-                return RedirectToAction("Listagem");
+                return RedirectToAction("Index");
             }
             else
             {
