@@ -65,11 +65,12 @@ namespace WebApplication1.Controllers
 
             if (pagamentoEncontrado == null)
             {
+                pagamento.Ativo = true;
                 _context.Pagamentos.Add(pagamento);
                 _context.SaveChanges();
                 TempData["Alterado"] = 1;
                 TempData["Mensagem"] = "Pagamento cadastrado com sucesso";
-                return View("Listagem", _context.Pagamentos.ToList());
+                return View("Index", _context.Pagamentos.ToList());
             }
             else
             {
@@ -78,7 +79,7 @@ namespace WebApplication1.Controllers
                 _context.SaveChanges();
                 TempData["Alterado"] = 2;
                 TempData["Mensagem"] = "Pagamento alterado com sucesso";
-                return View("Listagem", _context.Pagamentos.ToList());
+                return View("Index", _context.Pagamentos.ToList());
             }
         }
 
@@ -105,13 +106,13 @@ namespace WebApplication1.Controllers
             if(pagamentoEncontrado == null) { 
                 return View("Erro", "Pagamento não encontrado");
             }
-            return RedirectToAction("FormularioPagamento", pagamentoEncontrado);
+            return View("FormularioPagamento", pagamentoEncontrado);
         }
 
-        public IActionResult ConfirmarPagamento(int id, DateTime dataPagamento)
+        public IActionResult ConfirmarPagamento(Pagamento pagamento)
         {
             Pagamento pagamentoEncontrado = new Pagamento();
-            pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == id);
+            pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == pagamento.Id);
             if(pagamentoEncontrado == null || !pagamentoEncontrado.Ativo)
             {
                 return View("Erro", "Pagamento não encontrado");
@@ -122,11 +123,8 @@ namespace WebApplication1.Controllers
             }
             if(pagamentoEncontrado != null)
             {
-                Pagamento pagamento = new Pagamento();
-                pagamento = pagamentoEncontrado;
                 pagamento.Pago = true;
-                pagamento.DataPagamento = dataPagamento;
-
+                pagamento.Ativo = true;
                 _context.Entry(pagamentoEncontrado).CurrentValues.SetValues(pagamento);
                 _context.SaveChanges();
                 return RedirectToAction("Index");

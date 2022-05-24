@@ -1,4 +1,3 @@
-C:\Users\Aluno\Documents\GitHub\sistema-controle-financeiro\WebApplication1\WebApplication1\obj\Debug\net6.0\WebApplication1.csproj.AssemblyReference.cache
 C:\Users\Aluno\Documents\GitHub\sistema-controle-financeiro\WebApplication1\WebApplication1\obj\Debug\net6.0\WebApplication1.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Aluno\Documents\GitHub\sistema-controle-financeiro\WebApplication1\WebApplication1\obj\Debug\net6.0\WebApplication1.AssemblyInfoInputs.cache
 C:\Users\Aluno\Documents\GitHub\sistema-controle-financeiro\WebApplication1\WebApplication1\obj\Debug\net6.0\WebApplication1.AssemblyInfo.cs
@@ -116,3 +115,4 @@ D:\Alisson Ferro\Documents\GitHub\sistema-controle-financeiro\WebApplication1\We
 D:\Alisson Ferro\Documents\GitHub\sistema-controle-financeiro\WebApplication1\WebApplication1\obj\Debug\net6.0\WebApplication1.pdb
 D:\Alisson Ferro\Documents\GitHub\sistema-controle-financeiro\WebApplication1\WebApplication1\obj\Debug\net6.0\WebApplication1.genruntimeconfig.cache
 D:\Alisson Ferro\Documents\GitHub\sistema-controle-financeiro\WebApplication1\WebApplication1\obj\Debug\net6.0\ref\WebApplication1.dll
+C:\Users\Aluno\Documents\GitHub\sistema-controle-financeiro\WebApplication1\WebApplication1\obj\Debug\net6.0\WebApplication1.csproj.AssemblyReference.cache

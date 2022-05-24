@@ -164,21 +164,33 @@
                                             <td class="preco">@pagamentos.Valor</td>
                                             <td>@pagamentos.CodBarras</td>
                                             <td>@pagamentos.DataVencimento</td>
-
-                                            if(@pagamentos.Pago){
+                                            
+                                            @if(pagamentos.Pago){
+                                                <td>@pagamentos.DataPagamento</td>
+                                                }else{
+                                                <td>-----</td>
+                                                }
+                                            @*if(pagamentos.Pago)
+                                            {
                                                 <td>@pagamentos.DataPagamento</td>
                                             }
+                                            if(!pagamentos.Pago)
+                                            {
+                                                <td>-</td>
+                                            }
+                                            *@
+
                                             <th class="options">
                                                 <!-- confirmar pagamento -->
-                                        <a href="#" class="btn btn-success btn-circle">
+                                        <a asp-action="Pagar" asp-route-id="@pagamentos.Id" class="btn btn-success btn-circle">
                                                     <i class="fas fa-check"></i>
                                                 </a>
                                                 <!-- editar pagamento -->
-                                        <a href="tables.html" class="btn btn-primary btn-circle">
+                                        <a asp-action="Editar" asp-route-id="@pagamentos.Id" class="btn btn-primary btn-circle">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <!-- excluir pagamento -->
-                                        <a href="#" class="btn btn-danger btn-circle">
+                                        <a asp-action="Excluir" class="btn btn-danger btn-circle">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </th>
