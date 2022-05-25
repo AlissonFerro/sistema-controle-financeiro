@@ -109,6 +109,7 @@ namespace WebApplication1.Controllers
         {
             Pagamento pagamentoEncontrado = new Pagamento();
             pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == id);
+            pagamentoEncontrado.DataPagamento = DateTime.Now;
             if(pagamentoEncontrado == null) { 
                 return View("Erro", "Pagamento não encontrado");
             }
@@ -144,7 +145,7 @@ namespace WebApplication1.Controllers
             }
         }
 
-        public IActionResult FormularioExcluir(int id)
+        /*public IActionResult FormularioExcluir(int id)
         {
             Pagamento pagamentoEncontrado = new Pagamento();
             pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == id);
@@ -161,16 +162,22 @@ namespace WebApplication1.Controllers
             }
             ViewBag.Name = "Excluir";
             return View("FormularioExcluir", pagamentoEncontrado);
-        }
+        }*/
 
         public IActionResult Excluir(int id)
         {
+            //CORRIGIR BUG MENSAGEM
             TempData["Alterado"] = 3;
             TempData["Mensagem"] = "Pagamento excluido com sucesso";
 
             Pagamento pagamentoEncontrado = new Pagamento();
             pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == id);
 
+            if (pagamentoEncontrado.Pago)
+            {
+                ViewBag.Erro = "Título pago não pode ser excluído";
+                return View("Blank");
+            }
             if (pagamentoEncontrado != null)
             {
                 Pagamento pagamento = new Pagamento();
@@ -187,12 +194,6 @@ namespace WebApplication1.Controllers
                 return View("Blank");
             }
         }
-
-        /*
-        public IActionResult Cadastrar()
-        {
-            
-        }*/
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

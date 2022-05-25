@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "iCsk2LzozHTyBkmPzWk/2uVbSu5PGc1zLC/6qhf+41I=",
+  "Hash": "7apPcRJ77Hq1yQkmU15pYVvNksYZwl8oKJHIxbXkIkE=",
   "Source": "WebApplication1",
   "BasePath": "_content/WebApplication1",
   "Mode": "Default",
@@ -60110,6 +60110,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\js\\demo\\datatables-demo.js"
+    },
+    {
+      "Identity": "C:\\Users\\Aluno\\Documents\\GitHub\\sistema-controle-financeiro\\WebApplication1\\WebApplication1\\wwwroot\\js\\js\\modal.js",
+      "SourceId": "WebApplication1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Aluno\\Documents\\GitHub\\sistema-controle-financeiro\\WebApplication1\\WebApplication1\\wwwroot\\",
+      "BasePath": "_content/WebApplication1",
+      "RelativePath": "js/js/modal.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\js\\modal.js"
     },
     {
       "Identity": "C:\\Users\\Aluno\\Documents\\GitHub\\sistema-controle-financeiro\\WebApplication1\\WebApplication1\\wwwroot\\js\\js\\sb-admin-2.js",
