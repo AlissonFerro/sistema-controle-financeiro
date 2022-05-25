@@ -115,6 +115,7 @@
                             
                            
                         -->
+                        
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
@@ -247,28 +248,7 @@
                                             </tr>
                                         </tfoot>
                                         <tbody>
-                                            <tr class="boleto-vencido">
-                                                <td>1</td>
-                                                <td>Internet</td>
-                                                <td class="preco">194,10</td>
-                                                <td>123123123120310212030123012</td>
-                                                <td>17/05/2022</td>
-                                                <td>17/05/2022</td>
-                                                <th class="options">  
-                                                    <!-- confirmar pagamento -->
-                                                    <a href="#" class="btn btn-success btn-circle">
-                                                    <i class="fas fa-check"></i>
-                                                    </a>
-                                                    <!-- editar pagamento -->
-                                                    <a href="tables.html" class="btn btn-primary btn-circle">
-                                                    <i class="fas fa-edit"></i>
-                                                    </a>
-                                                    <!-- excluir pagamento -->
-                                                    <a href="#" class="btn btn-danger btn-circle">
-                                                    <i class="fas fa-trash"></i>
-                                                    </a>
-                                             </th>
-                                            </tr>
+                                           
                                             <tr>
                                                 <td>1</td>
                                                 <td>Internet</td>
@@ -286,31 +266,35 @@
                                                     <i class="fas fa-edit"></i>
                                                     </a>
                                                     <!-- excluir pagamento -->
-                                                    <a href="#" class="btn btn-danger btn-circle">
-                                                    <i class="fas fa-trash"></i>
-                                                    </a>
-                                             </th>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Internet</td>
-                                                <td class="preco">194,10</td>
-                                                <td>123123123120310212030123012</td>
-                                                <td>17/05/2022</td>
-                                                <td>17/05/2022</td>
-                                                <th class="options">  
-                                                    <!-- confirmar pagamento -->
-                                                    <a href="#" class="btn btn-success btn-circle">
-                                                    <i class="fas fa-check"></i>
-                                                    </a>
-                                                    <!-- editar pagamento -->
-                                                    <a href="#" class="btn btn-primary btn-circle">
-                                                    <i class="fas fa-edit"></i>
-                                                    </a>
-                                                    <!-- excluir pagamento -->
-                                                    <a href="#" class="btn btn-danger btn-circle">
-                                                    <i class="fas fa-trash"></i>
-                                                    </a>
+                                                    <div class="options">
+                                                        <button type="button" class="btn btn-danger btn-circle " data-toggle="modal" data-target="#exampleModalCenter">
+                                                            <i class="fas fa-trash"></i>
+                                                          </button>
+                                                          
+                                                          <!-- Modal -->
+                                                          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <h5 class="modal-title" id="exampleModalLongTitle">Atenção</h5>
+                                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                  </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Tem certeza que deseja excluir este pagamento?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger">Excluir</button>
+                                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                    </div>
+                                                   
+                                                    <!-- Button trigger modal -->
+
                                              </th>
                                             </tr>
                                            
@@ -355,25 +339,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -395,6 +361,7 @@
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
     <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/demo/modal.js"></script>
 </body>
 
 </html>
