@@ -17,6 +17,7 @@ namespace WebApplication1.Controllers
         public IActionResult Index()
         {
             int totalPagos = 0;
+            int aVencer = 0;
             int pagamentosVencidos = 0;
             decimal valorTotalPago = 0;
             List<Pagamento> pagamentos = _context.Pagamentos.ToList();
@@ -27,7 +28,10 @@ namespace WebApplication1.Controllers
                     totalPagos++;
                     valorTotalPago += pagamento.Valor;
                 }
-
+                if(!pagamento.Pago && pagamento.Ativo)
+                {
+                    aVencer++;
+                }
                 int data = DateTime.Now.Subtract(pagamento.DataVencimento).Days;
                 if (data > 0 && !pagamento.Pago)
                 {
@@ -36,7 +40,7 @@ namespace WebApplication1.Controllers
             }
 
             ViewBag.QuantidadeTotalPagos = totalPagos;
-            ViewBag.AVencer = pagamentos.Count() - totalPagos;
+            ViewBag.AVencer = aVencer;
             ViewBag.PagamentosVencidos = pagamentosVencidos;
             ViewBag.TotalPago = valorTotalPago;
             return View("Index", pagamentos);
@@ -55,6 +59,7 @@ namespace WebApplication1.Controllers
         public IActionResult Adicionar(Pagamento pagamento)
         {
             ModelState.Remove("Id");
+            ModelState.Remove("DataPagamento");
             if (!ModelState.IsValid)
             {
                 return View("Formulario");
@@ -89,7 +94,8 @@ namespace WebApplication1.Controllers
             pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == id);
             if (pagamentoEncontrado == null)
             {
-                return View("Erro", "Pagamento não encontrado");
+                ViewBag.Erro = "Pagamento não encontrado";
+                return View("Blank");
             }
             if (pagamentoEncontrado.Ativo == false)
             {
@@ -115,11 +121,13 @@ namespace WebApplication1.Controllers
             pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == pagamento.Id);
             if(pagamentoEncontrado == null || !pagamentoEncontrado.Ativo)
             {
-                return View("Erro", "Pagamento não encontrado");
+                ViewBag.Erro = "Pagamento não encontrado";
+                return View("Blank");
             }
             if (pagamentoEncontrado.Pago)
             {
-                return View("Erro", "Título já pago");
+                ViewBag.Erro = "Título já pago";
+                return View("Blank");
             }
             if(pagamentoEncontrado != null)
             {
@@ -131,7 +139,8 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                return View("Erro", "Pagamento não encontrado");
+                ViewBag.Erro = "Pagamento não encontrado";
+                return View("Blank");
             }
         }
 
@@ -142,11 +151,13 @@ namespace WebApplication1.Controllers
 
             if (pagamentoEncontrado == null || pagamentoEncontrado.Ativo == false)
             {
-                return View("Erro", "Pagamento não encontrado");
+                ViewBag.Erro = "Pagamento não encontrado";
+                return View("Blank");
             }
             if (pagamentoEncontrado.Pago)
             {
-                return View("Erro", "Título pago não pode ser excluído");
+                ViewBag.Erro = "Título pago não pode ser excluído";
+                return View("Blank");
             }
             ViewBag.Name = "Excluir";
             return View("FormularioExcluir", pagamentoEncontrado);
@@ -172,7 +183,8 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                return View("Erro", "Pagamento não encontrado");
+                ViewBag.Erro = "Pagamento não encontrado";
+                return View("Blank");
             }
         }
 

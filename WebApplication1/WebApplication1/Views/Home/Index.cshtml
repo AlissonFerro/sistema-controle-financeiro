@@ -170,15 +170,6 @@
                                                 }else{
                                                 <td>-----</td>
                                                 }
-                                            @*if(pagamentos.Pago)
-                                            {
-                                                <td>@pagamentos.DataPagamento</td>
-                                            }
-                                            if(!pagamentos.Pago)
-                                            {
-                                                <td>-</td>
-                                            }
-                                            *@
 
                                             <th class="options">
                                                 <!-- confirmar pagamento -->
@@ -190,7 +181,7 @@
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <!-- excluir pagamento -->
-                                        <a asp-action="Excluir" class="btn btn-danger btn-circle">
+                                        <a asp-action="FormularioExcluir" asp-route-id="@pagamentos.Id" class="btn btn-danger btn-circle">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </th>

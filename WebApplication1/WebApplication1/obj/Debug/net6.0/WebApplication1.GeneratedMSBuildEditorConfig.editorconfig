@@ -15,8 +15,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Aluno\Documents\GitHub\sistema-controle-financeiro\WebApplication1\WebApplication1
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Aluno/Documents/GitHub/sistema-controle-financeiro/WebApplication1/WebApplication1/Views/Home/Blank.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCbGFuay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Aluno/Documents/GitHub/sistema-controle-financeiro/WebApplication1/WebApplication1/Views/Home/Formulario.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGb3JtdWxhcmlvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Aluno/Documents/GitHub/sistema-controle-financeiro/WebApplication1/WebApplication1/Views/Home/FormularioExcluir.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGb3JtdWxhcmlvRXhjbHVpci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Aluno/Documents/GitHub/sistema-controle-financeiro/WebApplication1/WebApplication1/Views/Home/FormularioPagamento.cshtml]
