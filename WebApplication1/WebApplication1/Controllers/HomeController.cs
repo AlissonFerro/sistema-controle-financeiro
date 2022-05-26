@@ -28,7 +28,7 @@ namespace WebApplication1.Controllers
                     totalPagos++;
                     valorTotalPago += pagamento.Valor;
                 }
-                if(!pagamento.Pago && pagamento.Ativo)
+                if (!pagamento.Pago && pagamento.Ativo)
                 {
                     aVencer++;
                 }
@@ -66,10 +66,17 @@ namespace WebApplication1.Controllers
             }
 
             Pagamento pagamentoEncontrado = new Pagamento();
+            Pagamento pagamentoVerificado = new Pagamento();
             pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == pagamento.Id);
+            pagamentoVerificado = _context.Pagamentos.FirstOrDefault(a => a.CodBarras == pagamento.CodBarras);
 
             if (pagamentoEncontrado == null)
             {
+                if (pagamentoVerificado != null)
+                {
+                    ViewBag.Erro = "Erro: Código de barras já cadastrado";
+                    return View("Blank");
+                };
                 pagamento.Ativo = true;
                 _context.Pagamentos.Add(pagamento);
                 _context.SaveChanges();
@@ -110,7 +117,8 @@ namespace WebApplication1.Controllers
             Pagamento pagamentoEncontrado = new Pagamento();
             pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == id);
             pagamentoEncontrado.DataPagamento = DateTime.Now;
-            if(pagamentoEncontrado == null) { 
+            if (pagamentoEncontrado == null)
+            {
                 return View("Erro", "Pagamento não encontrado");
             }
             return View("FormularioPagamento", pagamentoEncontrado);
@@ -120,7 +128,7 @@ namespace WebApplication1.Controllers
         {
             Pagamento pagamentoEncontrado = new Pagamento();
             pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == pagamento.Id);
-            if(pagamentoEncontrado == null || !pagamentoEncontrado.Ativo)
+            if (pagamentoEncontrado == null || !pagamentoEncontrado.Ativo)
             {
                 ViewBag.Erro = "Pagamento não encontrado";
                 return View("Blank");
@@ -130,7 +138,7 @@ namespace WebApplication1.Controllers
                 ViewBag.Erro = "Título já pago";
                 return View("Blank");
             }
-            if(pagamentoEncontrado != null)
+            if (pagamentoEncontrado != null)
             {
                 pagamento.Pago = true;
                 pagamento.Ativo = true;
