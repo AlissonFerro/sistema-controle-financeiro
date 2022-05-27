@@ -163,10 +163,10 @@
                                             <td>@pagamentos.Descricao</td>
                                             <td class="preco">@pagamentos.Valor</td>
                                             <td>@pagamentos.CodBarras</td>
-                                            <td>@pagamentos.DataVencimento</td>
+                                            <td>@pagamentos.DataVencimento.ToShortDateString()</td>
                                             
                                             @if(pagamentos.Pago){
-                                                <td>@pagamentos.DataPagamento</td>
+                                                <td>@pagamentos.DataPagamento.ToShortDateString()</td>
                                                 }else{
                                                 <td>-----</td>
                                                 }
