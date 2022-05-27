@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApplication1.Models;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace WebApplication1.Controllers
 {
@@ -20,7 +23,9 @@ namespace WebApplication1.Controllers
             int aVencer = 0;
             int pagamentosVencidos = 0;
             decimal valorTotalPago = 0;
+
             List<Pagamento> pagamentos = _context.Pagamentos.ToList();
+
             foreach (var pagamento in pagamentos)
             {
                 if (pagamento.Pago)
@@ -43,6 +48,7 @@ namespace WebApplication1.Controllers
             ViewBag.AVencer = aVencer;
             ViewBag.PagamentosVencidos = pagamentosVencidos;
             ViewBag.TotalPago = valorTotalPago;
+
             return View("Index", pagamentos);
         }
 
@@ -77,6 +83,8 @@ namespace WebApplication1.Controllers
                     ViewBag.Erro = "Erro: Código de barras já cadastrado";
                     return View("Blank");
                 };
+                //var descricao = from des in _context.Pagamentos.ToList();
+                //string descricao = _context.Pagamentos.Select(a => a.Descricao == pagamento.Descricao);
                 pagamento.Ativo = true;
                 _context.Pagamentos.Add(pagamento);
                 _context.SaveChanges();
@@ -175,8 +183,6 @@ namespace WebApplication1.Controllers
         public IActionResult Excluir(int id)
         {
             //CORRIGIR BUG MENSAGEM
-            TempData["Alterado"] = 3;
-            TempData["Mensagem"] = "Pagamento excluido com sucesso";
 
             Pagamento pagamentoEncontrado = new Pagamento();
             pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == id);
@@ -194,6 +200,8 @@ namespace WebApplication1.Controllers
 
                 _context.Entry(pagamentoEncontrado).CurrentValues.SetValues(pagamento);
                 _context.SaveChanges();
+                TempData["Alterado"] = 3;
+                TempData["Mensagem"] = "Pagamento excluido com sucesso";
                 return RedirectToAction("Index");
             }
             else
