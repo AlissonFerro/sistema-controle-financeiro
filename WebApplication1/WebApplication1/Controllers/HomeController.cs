@@ -83,14 +83,21 @@ namespace WebApplication1.Controllers
                     ViewBag.Erro = "Erro: Código de barras já cadastrado";
                     return View("Blank");
                 };
-                //var descricao = from des in _context.Pagamentos.ToList();
-                //string descricao = _context.Pagamentos.Select(a => a.Descricao == pagamento.Descricao);
+                List <Pagamento> pagamentosDescricao = _context.Pagamentos.ToList();
+                for(int i=0; i<pagamentosDescricao.Count; i++)
+                {
+                    if(pagamentosDescricao[i].Descricao.ToUpper() == pagamento.Descricao.ToUpper() && pagamentosDescricao[i].DataVencimento.Month == pagamento.DataVencimento.Month)
+                    {
+                        ViewBag.Erro = "Erro: Código de barras já cadastrado neste mês";
+                        return View("Blank");
+                    }
+                }
                 pagamento.Ativo = true;
                 _context.Pagamentos.Add(pagamento);
                 _context.SaveChanges();
                 TempData["Alterado"] = 1;
                 TempData["Mensagem"] = "Pagamento cadastrado com sucesso";
-                return View("Index", _context.Pagamentos.ToList());
+                return RedirectToAction("Index");
             }
             else
             {
@@ -99,7 +106,7 @@ namespace WebApplication1.Controllers
                 _context.SaveChanges();
                 TempData["Alterado"] = 2;
                 TempData["Mensagem"] = "Pagamento alterado com sucesso";
-                return View("Index", _context.Pagamentos.ToList());
+                return RedirectToAction("Index");
             }
         }
 
@@ -124,11 +131,11 @@ namespace WebApplication1.Controllers
         {
             Pagamento pagamentoEncontrado = new Pagamento();
             pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == id);
-            pagamentoEncontrado.DataPagamento = DateTime.Now;
             if (pagamentoEncontrado == null)
             {
-                return View("Erro", "Pagamento não encontrado");
+                return View("Blank", "Pagamento não encontrado");
             }
+            pagamentoEncontrado.DataPagamento = DateTime.Now;
             return View("FormularioPagamento", pagamentoEncontrado);
         }
 
@@ -148,6 +155,8 @@ namespace WebApplication1.Controllers
             }
             if (pagamentoEncontrado != null)
             {
+                TempData["Alterado"] = 1;
+                TempData["Mensagem"] = "Pagamento realizado com sucesso";
                 pagamento.Pago = true;
                 pagamento.Ativo = true;
                 _context.Entry(pagamentoEncontrado).CurrentValues.SetValues(pagamento);
