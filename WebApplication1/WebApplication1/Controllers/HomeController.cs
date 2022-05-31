@@ -4,6 +4,7 @@ using WebApplication1.Models;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json.Nodes;
 
 namespace WebApplication1.Controllers
 {
@@ -16,6 +17,11 @@ namespace WebApplication1.Controllers
         {
             _context = context;
         }
+        /*
+        public IActionResult buscaJson()
+        {
+            foreach
+        }*/
 
         public IActionResult Index()
         {
@@ -24,6 +30,8 @@ namespace WebApplication1.Controllers
             int pagamentosVencidos = 0;
             decimal valorTotalPago = 0;
 
+            decimal[] meses = new decimal[12];
+            //dynamic meses = new JsonArray(12);
             List<Pagamento> pagamentos = _context.Pagamentos.ToList();
 
             foreach (var pagamento in pagamentos)
@@ -32,6 +40,44 @@ namespace WebApplication1.Controllers
                 {
                     totalPagos++;
                     valorTotalPago += pagamento.Valor;
+                    switch(pagamento.DataPagamento.Month){
+                        case 0:
+                            meses[0] += pagamento.Valor;
+                            break;
+                        case 1:
+                            meses[1] += pagamento.Valor;
+                            break;
+                        case 2:
+                            meses[2] += pagamento.Valor;
+                            break;
+                        case 3:
+                            meses[3] += pagamento.Valor;
+                            break;
+                        case 4:
+                            meses[4] += pagamento.Valor;
+                            break;
+                        case 5:
+                            meses[5] += pagamento.Valor;
+                            break;
+                        case 6:
+                            meses[6] += pagamento.Valor;
+                            break;
+                        case 7:
+                            meses[7] += pagamento.Valor;
+                            break;
+                        case 8:
+                            meses[8] += pagamento.Valor;
+                            break;
+                        case 9:
+                            meses[9] += pagamento.Valor;
+                            break;
+                        case 10:
+                            meses[10] += pagamento.Valor;
+                            break;
+                        case 11:
+                            meses[11] += pagamento.Valor;
+                            break;
+                    }
                 }
                 if (!pagamento.Pago && pagamento.Ativo)
                 {
@@ -43,14 +89,20 @@ namespace WebApplication1.Controllers
                     pagamentosVencidos++;
                 }
             }
-
+            dynamic mesesJson = new JsonArray();
+            for(int i = 0; i < meses.Count(); i++)
+            {
+                mesesJson.Add(meses[i].ToString());
+            }
             ViewBag.QuantidadeTotalPagos = totalPagos;
             ViewBag.AVencer = aVencer;
             ViewBag.PagamentosVencidos = pagamentosVencidos;
             ViewBag.TotalPago = valorTotalPago;
-
+            //return Json(mesesJson);
             return View("Index", pagamentos);
         }
+
+
 
         public IActionResult Listar()
         {
@@ -88,7 +140,7 @@ namespace WebApplication1.Controllers
                 {
                     if(pagamentosDescricao[i].Descricao.ToUpper() == pagamento.Descricao.ToUpper() && pagamentosDescricao[i].DataVencimento.Month == pagamento.DataVencimento.Month)
                     {
-                        ViewBag.Erro = "Erro: Código de barras já cadastrado neste mês";
+                        ViewBag.Erro = "Erro: Título já cadastrado neste mês";
                         return View("Blank");
                     }
                 }
@@ -170,29 +222,9 @@ namespace WebApplication1.Controllers
             }
         }
 
-        /*public IActionResult FormularioExcluir(int id)
-        {
-            Pagamento pagamentoEncontrado = new Pagamento();
-            pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == id);
-
-            if (pagamentoEncontrado == null || pagamentoEncontrado.Ativo == false)
-            {
-                ViewBag.Erro = "Pagamento não encontrado";
-                return View("Blank");
-            }
-            if (pagamentoEncontrado.Pago)
-            {
-                ViewBag.Erro = "Título pago não pode ser excluído";
-                return View("Blank");
-            }
-            ViewBag.Name = "Excluir";
-            return View("FormularioExcluir", pagamentoEncontrado);
-        }*/
 
         public IActionResult Excluir(int id)
         {
-            //CORRIGIR BUG MENSAGEM
-
             Pagamento pagamentoEncontrado = new Pagamento();
             pagamentoEncontrado = _context.Pagamentos.FirstOrDefault(a => a.Id == id);
 
