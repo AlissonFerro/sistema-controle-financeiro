@@ -35,6 +35,12 @@ INSERT INTO Pagamentos VALUES ('Água', 85.00 ,'123456789112345678911234567891123
 INSERT INTO Pagamentos VALUES ('Internet', 119.20,'123456789112345678911234567891123456789112345678','2022-03-17','2022-03-17',0,1);
 INSERT INTO Pagamentos VALUES ('Casa', 1109.20,'123456789112345678911234567891123456789112345678','2022-03-13','',0,1);
 
-Update Pagamentos set Ativo = 1 Where id=4
+Update Pagamentos set Ativo = 1 Where id=7
+Update Pagamentos set Ativo = 1 Where id=10
+Update Pagamentos set Ativo = 1 Where id=11
+Update Pagamentos set Ativo = 1 Where id=13
+Update Pagamentos set Ativo = 1 Where id=14
+Update Pagamentos set Ativo = 1 Where id=16
+
 
 select Descricao from Pagamentos where MONTH(DataVencimento) = 5
