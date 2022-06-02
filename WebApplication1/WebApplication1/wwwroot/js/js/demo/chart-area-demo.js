@@ -45,8 +45,8 @@ var myLineChart = new Chart(ctx, {
       pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
-      pointBorderWidth: 2,
-      data: [0, 4123, 1239, 0, 0, 0, 0, 25000, 20000, 30000, 25000, 40000],
+        pointBorderWidth: 2,
+        data: [document.getElementById("Jan").innerText, document.getElementById("Fev").innerText, document.getElementById("Mar").innerText, document.getElementById("Abr").innerText, document.getElementById("Mai").innerText, document.getElementById("Jun").innerText, document.getElementById("Jul").innerText, document.getElementById("Ago").innerText, document.getElementById("Set").innerText, document.getElementById("Out").innerText, document.getElementById("Nov").innerText, document.getElementById("Dez").innerText],
       
     }],
   },

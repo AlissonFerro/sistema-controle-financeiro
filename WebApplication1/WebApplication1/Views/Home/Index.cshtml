@@ -97,6 +97,20 @@
     </div>
 
 
+    <div class="meses">
+        <label id="Jan" hidden>@ViewBag.Jan</label>
+        <label id="Fev" hidden>@ViewBag.Fev</label>
+        <label id="Mar" hidden>@ViewBag.Mar</label>
+        <label id="Abr" hidden>@ViewBag.Abr</label>
+        <label id="Mai" hidden>@ViewBag.Mai</label>
+        <label id="Jun" hidden>@ViewBag.Jun</label>
+        <label id="Jul" hidden>@ViewBag.Jul</label>
+        <label id="Ago" hidden>@ViewBag.Ago</label>
+        <label id="Set" hidden>@ViewBag.Set</label>
+        <label id="Out" hidden>@ViewBag.Out</label>
+        <label id="Nov" hidden>@ViewBag.Nov</label>
+        <label id="Dez" hidden>@ViewBag.Dez</label>
+    </div>
     <!-- Content Row -->
 
     <div class="row">
@@ -159,71 +173,71 @@
                                     @if (pagamentos.Ativo)
                                     {
                                         @if (pagamentos.Pago)
-                                            {
-                                                <tr class="boleto-vencido alert alert-success">
-                                                        <td>@pagamentos.Id</td>
-                                                        <td>@pagamentos.Descricao</td>
-                                                        <td class="preco">@pagamentos.Valor</td>
-                                                        <td>@pagamentos.CodBarras</td>
-                                                        <td>@pagamentos.DataVencimento.ToShortDateString()</td>
-                                                        <td>@pagamentos.DataPagamento.ToShortDateString()</td>
-                                                        <td class="options">
-                                    </td>
-                                                
-                                        </tr>
-                                            }
-                                            else
-                                            {
-                                             <tr class="boleto-vencido">
-                                            <td>@pagamentos.Id</td>
-                                            <td>@pagamentos.Descricao</td>
-                                            <td class="preco">@pagamentos.Valor</td>
-                                            <td>@pagamentos.CodBarras</td>
-                                            <td>@pagamentos.DataVencimento.ToShortDateString()</td>
+                                        {
+                                            <tr class="boleto-vencido alert alert-success">
+                                                <td>@pagamentos.Id</td>
+                                                <td>@pagamentos.Descricao</td>
+                                                <td class="preco">@pagamentos.Valor</td>
+                                                <td>@pagamentos.CodBarras</td>
+                                                <td>@pagamentos.DataVencimento.ToShortDateString()</td>
+                                                <td>@pagamentos.DataPagamento.ToShortDateString()</td>
+                                                <td class="options">
+                                                </td>
+
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            <tr class="boleto-vencido">
+                                                <td>@pagamentos.Id</td>
+                                                <td>@pagamentos.Descricao</td>
+                                                <td class="preco">@pagamentos.Valor</td>
+                                                <td>@pagamentos.CodBarras</td>
+                                                <td>@pagamentos.DataVencimento.ToShortDateString()</td>
                                                 <td>-----</td>
                                                 <th class="options">
-                                                <!-- confirmar pagamento -->
+                                                    <!-- confirmar pagamento -->
                                         <a asp-action="Pagar" asp-route-id="@pagamentos.Id" class="btn btn-success btn-circle">
-                                                    <i class="fas fa-check"></i>
-                                                </a>
-                                                <!-- editar pagamento -->
-                                        <a asp-action="Editar" asp-route-id="@pagamentos.Id" class="btn btn-primary btn-circle">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <!-- excluir pagamento -->
-                                        <div class="options">
-                                                    <a class="btn btn-danger btn-circle" asp-route-id="@pagamentos.Id" onclick="getId(@pagamentos.Id)" data-toggle="modal" data-id="@pagamentos.Id" data-target="#exampleModalCenter">
-                                                        <i class="fas fa-trash"></i>
+                                                        <i class="fas fa-check"></i>
                                                     </a>
+                                                    <!-- editar pagamento -->
+                                        <a asp-action="Editar" asp-route-id="@pagamentos.Id" class="btn btn-primary btn-circle">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <!-- excluir pagamento -->
+                                        <div class="options">
+                                                        <a class="btn btn-danger btn-circle" asp-route-id="@pagamentos.Id" onclick="getId(@pagamentos.Id)" data-toggle="modal" data-id="@pagamentos.Id" data-target="#exampleModalCenter">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
 
-                                                    <!-- Modal -->
+                                                        <!-- Modal -->
                                             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLongTitle">Atenção</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    Tem certeza que deseja excluir este pagamento?
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <form method="post">
-                                                                        <button type="submit" asp-route-id="@pagamentos.Id" onclick="getId(@pagamentos.Id)" data-id="@pagamentos.Id" id="excluir-model" class="btn btn-danger">Excluir</button>
-                                                                    </form>
-                                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLongTitle">Atenção</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Tem certeza que deseja excluir este pagamento?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <form method="post">
+                                                                            <button type="submit" asp-route-id="@pagamentos.Id" onclick="getId(@pagamentos.Id)" data-id="@pagamentos.Id" id="excluir-model" class="btn btn-danger">Excluir</button>
+                                                                        </form>
+                                                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- Button trigger modal -->
+                                                    <!-- Button trigger modal -->
                                     </th>
-                                        </tr>
-                                            }
-                                            
+                                            </tr>
+                                        }
+
                                     }
                                 }
                             </tbody>

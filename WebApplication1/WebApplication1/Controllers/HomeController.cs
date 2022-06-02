@@ -17,11 +17,64 @@ namespace WebApplication1.Controllers
         {
             _context = context;
         }
-        /*
+
         public IActionResult buscaJson()
         {
-            foreach
-        }*/
+            decimal[] meses = new decimal[12];
+            List<Pagamento> pagamentos = _context.Pagamentos.ToList();
+            foreach (var pagamento in pagamentos)
+            {
+                if (pagamento.Pago)
+                {
+                    switch (pagamento.DataPagamento.Month)
+                    {
+                        case 1:
+                            meses[0] += pagamento.Valor;
+                            break;
+                        case 2:
+                            meses[1] += pagamento.Valor;
+                            break;
+                        case 3:
+                            meses[2] += pagamento.Valor;
+                            break;
+                        case 4:
+                            meses[3] += pagamento.Valor;
+                            break;
+                        case 5:
+                            meses[4] += pagamento.Valor;
+                            break;
+                        case 6:
+                            meses[5] += pagamento.Valor;
+                            break;
+                        case 7:
+                            meses[6] += pagamento.Valor;
+                            break;
+                        case 8:
+                            meses[7] += pagamento.Valor;
+                            break;
+                        case 9:
+                            meses[8] += pagamento.Valor;
+                            break;
+                        case 10:
+                            meses[9] += pagamento.Valor;
+                            break;
+                        case 11:
+                            meses[10] += pagamento.Valor;
+                            break;
+                        case 12:
+                            meses[11] += pagamento.Valor;
+                            break;
+                    }
+                }
+            }
+            ViewBag.Mai = meses[4];
+            dynamic mesesJson = new JsonArray();
+            foreach(var mes in meses)
+            {
+                mesesJson.Add(mes.ToString());
+            }
+            return Json(mesesJson);
+        }
 
         public IActionResult Index()
         {
@@ -40,41 +93,42 @@ namespace WebApplication1.Controllers
                 {
                     totalPagos++;
                     valorTotalPago += pagamento.Valor;
-                    switch(pagamento.DataPagamento.Month){
-                        case 0:
+                    switch (pagamento.DataPagamento.Month)
+                    {
+                        case 1:
                             meses[0] += pagamento.Valor;
                             break;
-                        case 1:
+                        case 2:
                             meses[1] += pagamento.Valor;
                             break;
-                        case 2:
+                        case 3:
                             meses[2] += pagamento.Valor;
                             break;
-                        case 3:
+                        case 4:
                             meses[3] += pagamento.Valor;
                             break;
-                        case 4:
+                        case 5:
                             meses[4] += pagamento.Valor;
                             break;
-                        case 5:
+                        case 6:
                             meses[5] += pagamento.Valor;
                             break;
-                        case 6:
+                        case 7:
                             meses[6] += pagamento.Valor;
                             break;
-                        case 7:
+                        case 8:
                             meses[7] += pagamento.Valor;
                             break;
-                        case 8:
+                        case 9:
                             meses[8] += pagamento.Valor;
                             break;
-                        case 9:
+                        case 10:
                             meses[9] += pagamento.Valor;
                             break;
-                        case 10:
+                        case 11:
                             meses[10] += pagamento.Valor;
                             break;
-                        case 11:
+                        case 12:
                             meses[11] += pagamento.Valor;
                             break;
                     }
@@ -89,16 +143,23 @@ namespace WebApplication1.Controllers
                     pagamentosVencidos++;
                 }
             }
-            dynamic mesesJson = new JsonArray();
-            for(int i = 0; i < meses.Count(); i++)
-            {
-                mesesJson.Add(meses[i].ToString());
-            }
+            ViewBag.Jan = meses[0];
+            ViewBag.Fev = meses[1];
+            ViewBag.Mar = meses[2];
+            ViewBag.Abr = meses[3];
+            ViewBag.Mai = meses[4];
+            ViewBag.Jun = meses[5];
+            ViewBag.Jul = meses[6];
+            ViewBag.Ago = meses[7];
+            ViewBag.Set = meses[8];
+            ViewBag.Out = meses[9];
+            ViewBag.Nov = meses[10];
+            ViewBag.Dez = meses[11];
+
             ViewBag.QuantidadeTotalPagos = totalPagos;
             ViewBag.AVencer = aVencer;
             ViewBag.PagamentosVencidos = pagamentosVencidos;
             ViewBag.TotalPago = valorTotalPago;
-            //return Json(mesesJson);
             return View("Index", pagamentos);
         }
 
@@ -135,10 +196,10 @@ namespace WebApplication1.Controllers
                     ViewBag.Erro = "Erro: Código de barras já cadastrado";
                     return View("Blank");
                 };
-                List <Pagamento> pagamentosDescricao = _context.Pagamentos.ToList();
-                for(int i=0; i<pagamentosDescricao.Count; i++)
+                List<Pagamento> pagamentosDescricao = _context.Pagamentos.ToList();
+                for (int i = 0; i < pagamentosDescricao.Count; i++)
                 {
-                    if(pagamentosDescricao[i].Descricao.ToUpper() == pagamento.Descricao.ToUpper() && pagamentosDescricao[i].DataVencimento.Month == pagamento.DataVencimento.Month)
+                    if (pagamentosDescricao[i].Descricao.ToUpper() == pagamento.Descricao.ToUpper() && pagamentosDescricao[i].DataVencimento.Month == pagamento.DataVencimento.Month)
                     {
                         ViewBag.Erro = "Erro: Título já cadastrado neste mês";
                         return View("Blank");
