@@ -179,8 +179,12 @@ namespace WebApplication1.Controllers
         {
             ModelState.Remove("Id");
             ModelState.Remove("DataPagamento");
-            if (!ModelState.IsValid)
+            int teste = pagamento.CodBarras.Length;
+            ViewBag.Error = null;
+
+            if (!ModelState.IsValid || pagamento.CodBarras.Length<40 || pagamento.CodBarras.Length>41)
             {
+                ViewBag.Error = "Confira o código digitado";
                 return View("Formulario");
             }
 
@@ -236,6 +240,11 @@ namespace WebApplication1.Controllers
             {
                 return View("AtualizarInativo", pagamentoEncontrado);
             }
+            if (pagamentoEncontrado.Pago)
+            {
+                ViewBag.Erro = "Título pago não pode ser editado";
+                return View("Blank");
+            }
             ViewBag.Name = "Editar";
             return View("Formulario", pagamentoEncontrado);
         }
@@ -247,6 +256,11 @@ namespace WebApplication1.Controllers
             if (pagamentoEncontrado == null)
             {
                 return View("Blank", "Pagamento não encontrado");
+            }
+            if (pagamentoEncontrado.Pago)
+            {
+                ViewBag.Erro = "Título já pago";
+                return View("Blank");
             }
             pagamentoEncontrado.DataPagamento = DateTime.Now;
             return View("FormularioPagamento", pagamentoEncontrado);

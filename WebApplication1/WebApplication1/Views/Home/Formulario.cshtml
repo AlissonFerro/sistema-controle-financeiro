@@ -31,7 +31,10 @@
                         <input class="form-control mb-3 dinheiro form-control" id="formGroupExampleInput2 dinheiro" style="display: inline-block;" asp-for="Valor" required>
                     </div>
 
-
+                    @if(ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger">@ViewBag.Error</div>
+                    }
                     <label for="formGroupExampleInput">Código de barras</label>
                     <input type="text" class="form-control mb-3 money2" id="formGroupExampleInput" placeholder="" asp-for="CodBarras" required>
 
