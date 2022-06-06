@@ -18,64 +18,6 @@ namespace WebApplication1.Controllers
             _context = context;
         }
 
-        public IActionResult buscaJson()
-        {
-            decimal[] meses = new decimal[12];
-            List<Pagamento> pagamentos = _context.Pagamentos.ToList();
-            foreach (var pagamento in pagamentos)
-            {
-                if (pagamento.Pago)
-                {
-                    switch (pagamento.DataPagamento.Month)
-                    {
-                        case 1:
-                            meses[0] += pagamento.Valor;
-                            break;
-                        case 2:
-                            meses[1] += pagamento.Valor;
-                            break;
-                        case 3:
-                            meses[2] += pagamento.Valor;
-                            break;
-                        case 4:
-                            meses[3] += pagamento.Valor;
-                            break;
-                        case 5:
-                            meses[4] += pagamento.Valor;
-                            break;
-                        case 6:
-                            meses[5] += pagamento.Valor;
-                            break;
-                        case 7:
-                            meses[6] += pagamento.Valor;
-                            break;
-                        case 8:
-                            meses[7] += pagamento.Valor;
-                            break;
-                        case 9:
-                            meses[8] += pagamento.Valor;
-                            break;
-                        case 10:
-                            meses[9] += pagamento.Valor;
-                            break;
-                        case 11:
-                            meses[10] += pagamento.Valor;
-                            break;
-                        case 12:
-                            meses[11] += pagamento.Valor;
-                            break;
-                    }
-                }
-            }
-            ViewBag.Mai = meses[4];
-            dynamic mesesJson = new JsonArray();
-            foreach(var mes in meses)
-            {
-                mesesJson.Add(mes.ToString());
-            }
-            return Json(mesesJson);
-        }
-
         public IActionResult Index()
         {
             int totalPagos = 0;
