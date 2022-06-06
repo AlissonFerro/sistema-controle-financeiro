@@ -46,7 +46,8 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
         pointBorderWidth: 2,
-        data: [document.getElementById("Jan").innerText, document.getElementById("Fev").innerText, document.getElementById("Mar").innerText, document.getElementById("Abr").innerText, document.getElementById("Mai").innerText, document.getElementById("Jun").innerText, document.getElementById("Jul").innerText, document.getElementById("Ago").innerText, document.getElementById("Set").innerText, document.getElementById("Out").innerText, document.getElementById("Nov").innerText, document.getElementById("Dez").innerText],
+        data: [parseFloat(document.getElementById("Jan").innerHTML), parseFloat(document.getElementById("Fev").innerHTML), parseFloat(document.getElementById("Mar").innerHTML), parseFloat(document.getElementById("Abr").innerHTML), parseFloat(document.getElementById("Mai").innerHTML), parseFloat(document.getElementById("Jun").innerHTML), parseFloat(document.getElementById("Jul").innerHTML), parseFloat(document.getElementById("Ago").innerHTML), parseFloat(document.getElementById("Set").innerHTML), parseFloat(document.getElementById("Out").innerHTML), parseFloat(document.getElementById("Nov").innerHTML), parseFloat(document.getElementById("Dez").innerHTML)],
+        //data: [document.getElementById("Jan").innerText, document.getElementById("Fev").innerText, document.getElementById("Mar").innerText, document.getElementById("Abr").innerText, document.getElementById("Mai").innerText, document.getElementById("Jun").innerText, document.getElementById("Jul").innerText, document.getElementById("Ago").innerText, document.getElementById("Set").innerText, document.getElementById("Out").innerText, document.getElementById("Nov").innerText, document.getElementById("Dez").innerText],
       
     }],
   },
